@@ -67,7 +67,7 @@ public:
         data[index] = value;
     }
 
-    void Remove(int index)
+    void remove(int index)
     {
         if (!isValidIndex(index))
             return;
@@ -76,6 +76,15 @@ public:
             data[i] = data[i + 1];
         }
         --logicalSize;
+        checkActualSize();
+    }
+
+    void removeLast()
+    {
+        if (logicalSize > 0)
+        {
+        --logicalSize;
+        }
         checkActualSize();
     }
 
@@ -238,12 +247,15 @@ int main()
         {
             arr4.Add(i + 1);
         }
-        arr4.Remove(2);
+        arr4.remove(2);
         // std::cout << arr4.getSize();
         // std::cout << 
         // std::cout << arr4[2];
         TEST(arr4.getSize() == 4);
         TEST(arr4[2] == 4);
+
+        arr4.removeLast();
+        TEST(arr4.getSize() == 3);
     }
 
     // Тест 5: Автоматическое уменьшение размера
